@@ -1,16 +1,74 @@
 #lang racket/base
 
-(define append
-    (lambda (l1 l2)
-    @todo
-))
 
+; Signature: append(l1,l2)
+; Type: [List(T)*List(T) -> List(T)] (for T as any type)
+; Purpose: To create a list which is the product of concating l2 to the end of l1
+; Pre-conditions: None
+; Tests: (append '() '(1 2))==>'(1 2); (append '(1 2) '())==>'(1 2); (append '(1 2) '(3 4))==>'(1 2 3 4)
+(define append
+    (lambda (l1 l2) (
+        if (eq? l2 '())
+            l1
+            (if (eq? l1 '())
+                l2
+                (cons (car l1) (append (cdr l1) l2))
+            )
+        )	
+    )
+)
+
+
+; Signature: reverse(l)
+; Type: [List(T) -> List(T)] (for T as any type)
+; Purpose: To reverse a list
+; Pre-conditions: None
+; Tests: (reverse '())==>'(); (reverse '(1))==>'(1); (reverse '(1 2 3 4))==>'(4 3 2 1)
 (define reverse
-    (lambda (l)
-    @todo
-))
+    (lambda (l) (
+        if (eq? l '())
+            l
+           (append (reverse (cdr l)) (cons (car l) '()))
+        )
+    )
+)
+
+
+
+; Signature: duplicate-items(lst, dup-count)
+; Type: [List(T)*List(Number)->List(T)] (for T as any type)
+; Purpose:  duplicates each item of lst according to the number defined
+;     in the same position in dup-count. In case dups-count is shorter
+;     than lst, dup-count should be treated as a cyclic list.
+; Pre-conditions: dup-count is not empty
+; Tests: (duplicate-items '() '(1 0))==>'(); (duplicate-items '(1 2 3) '(1 0))==>'(1 3); (duplicate-items '(1 2 3) '(2 1 0 10 2))==>'(1 1 2)
 
 (define duplicate-items
     (lambda (lst dup-count)
-    @todo    
-))
+      (my-duplicate-items lst dup-count dup-count)
+    )
+)
+
+
+; Signature: my-duplicate-items(lst dup-count copy-dup-count)
+; Type: [List(T)*List(Number)*List(Number)->List(T)] (for T as any type)
+; Purpose:  duplicates each item of lst according to the number defined
+;     in the same position in dup-count. In case dups-count is shorter
+;     than lst, dup-count should be treated as a cyclic list.
+; Pre-conditions: dup-count=copy-dup-count && dup-count is not empty
+; Tests: (my-duplicate-items '() '(1 0))==>'(); (my-duplicate-items '(1 2 3) '(1 0))==>'(1 3);
+;    (my-duplicate-items '(1 2 3) '(2 1 0 10 2))==>'(1 1 2)
+(define my-duplicate-items (
+    lambda (lst dup-count copy-dup-count) (
+        if (eq? lst '())
+            lst
+            (if (eq? dup-count '())
+                (my-duplicate-items lst copy-dup-count copy-dup-count)
+                (if (eq? (car dup-count) 0)
+                    (my-duplicate-items (cdr lst) (cdr dup-count) copy-dup-count)
+                    (cons (car lst) (my-duplicate-items lst (cons (- (car dup-count) 1) (cdr dup-count)) copy-dup-count))
+                )
+            )
+        )
+    )  
+)
