@@ -2,7 +2,7 @@
 
 
 ; Signature: append(l1,l2)
-; Type: [List(T)*List(T) -> List(T)] (for T as any type)
+; Type: [List(T)*List(T) -> List(T)]
 ; Purpose: To create a list which is the product of concating l2 to the end of l1
 ; Pre-conditions: None
 ; Tests: (append '() '(1 2))==>'(1 2); (append '(1 2) '())==>'(1 2); (append '(1 2) '(3 4))==>'(1 2 3 4)
@@ -20,7 +20,7 @@
 
 
 ; Signature: reverse(l)
-; Type: [List(T) -> List(T)] (for T as any type)
+; Type: [List(T) -> List(T)]
 ; Purpose: To reverse a list
 ; Pre-conditions: None
 ; Tests: (reverse '())==>'(); (reverse '(1))==>'(1); (reverse '(1 2 3 4))==>'(4 3 2 1)
@@ -36,7 +36,7 @@
 
 
 ; Signature: duplicate-items(lst, dup-count)
-; Type: [List(T)*List(Number)->List(T)] (for T as any type)
+; Type: [List(T)*List(Number)->List(T)] 
 ; Purpose:  duplicates each item of lst according to the number defined
 ;     in the same position in dup-count. In case dups-count is shorter
 ;     than lst, dup-count should be treated as a cyclic list.
@@ -51,7 +51,7 @@
 
 
 ; Signature: my-duplicate-items(lst dup-count copy-dup-count)
-; Type: [List(T)*List(Number)*List(Number)->List(T)] (for T as any type)
+; Type: [List(T)*List(Number)*List(Number)->List(T)] 
 ; Purpose:  duplicates each item of lst according to the number defined
 ;     in the same position in dup-count. In case dups-count is shorter
 ;     than lst, dup-count should be treated as a cyclic list.
