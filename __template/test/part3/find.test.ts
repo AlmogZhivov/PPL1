@@ -1,5 +1,5 @@
 import * as R from "../../src/lib/result";
-import * as F from "../../src/part4/find";
+import * as F from "../../src/part3/find";
 
 describe("Find", () => {
     describe("findResult", () => {
